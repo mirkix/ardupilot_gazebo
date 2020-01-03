@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="terarangertowerevo">
+    <link name="link">
+      <gravity>false</gravity>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <pose>0 0.042 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://terarangertowerevo/meshes/Tower_Evo_Full_file.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name="laser" type="ray">
+        <pose>0 0 0 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>9</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.1415</min_angle>
+              <max_angle>3.1415</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.5</min>
+            <max>50</max>
+            <resolution>0.02</resolution>
+          </range>
+<!--          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>-->
+        </ray>
+        <plugin name="laser" filename="libRayPlugin.so"/>
+        <plugin name="laser1" filename="libArduPilotTeraRangerEvoPlugin.so"/>
+        <always_on>1</always_on>
+        <update_rate>50</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+    </link>
+  </model>
+</sdf>
